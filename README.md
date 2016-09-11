@@ -1,0 +1,1 @@
+run "node app.js", navigate to http://localhost:8888 in the browser
