@@ -7105,6 +7105,16 @@
                 });
             }
 
+            var issueTopTracks = function (username, next) {
+                $.ajax({
+                    url: 'https://api.spotify.com/v1/me/top/tracks',
+                    headers: {
+                        'Authorization': 'Bearer ' + access_token
+                    },
+                    success: next
+                });
+            }
+
             var renderPlaylist = function (tracks) {
                 if (playlist)
                     playlistPlaceholder.innerHTML = playlistTemplate(tracks);
@@ -7128,15 +7138,18 @@
                     //find discoverplaylist
                     //get tracks
                     //render tracks
-                    issuePlaylistRequest(response.id, function (response) {
-                        findDiscoverPlaylist(response.items, function (err, playlist, next) {
-                            if (!err) {
-                                issueTrackRequest('spotifydiscover', playlist.id, function (response) {
-                                    renderPlaylist(response.items);
-                                })
-                            }
-                        })
-                    });
+                    // issuePlaylistRequest(response.id, function (response) {
+                    //     findDiscoverPlaylist(response.items, function (err, playlist, next) {
+                    //         if (!err) {
+                    //             issueTrackRequest('spotifydiscover', playlist.id, function (response) {
+                    //                 renderPlaylist(response.items);
+                    //             })
+                    //         }
+                    //     })
+                    // });
+                    issueTopTracks(response.id, function(response){
+                        renderPlaylist(response.items);
+                    })
                     //mockPlaylistRequest();
                     //renderPlaylist(tracks);
 

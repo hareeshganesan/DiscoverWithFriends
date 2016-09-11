@@ -77,8 +77,8 @@
     <h2>track info</h2>
     <dl class="dl-horizontal">
       {{#each this}}
-              <dt>{{{track.album.name}}}</dt>
-              <dd class="text-overflow">{{track.name}}</dt>
+              <dt>{{{album.name}}}</dt>
+              <dd class="text-overflow"><a href="{{uri}}">{{name}}</a></dt>
       {{/each}}
     </dl>    
   </script>
